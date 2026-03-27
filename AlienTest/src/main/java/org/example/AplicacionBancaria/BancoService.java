@@ -1,14 +1,29 @@
 package org.example.AplicacionBancaria;
 
-public class BancoService implements RepositorioBanco{
+public class BancoService {
 
-    @Override
-    public double obtenerSaldo(String cuenta) {
-        return 0;
+    private final RepositorioBanco repositorioBanco;
+
+
+    public BancoService(RepositorioBanco repositorioBanco) {
+        this.repositorioBanco = repositorioBanco;
     }
 
-    @Override
-    public void actualizarSaldo(String cuenta, double nuevoSaldo) {
+    public void depositar(String cuenta, double monto){
+        double saldo = repositorioBanco.obtenerSaldo(cuenta);
+
+        repositorioBanco.actualizarSaldo(cuenta,saldo+monto);
 
     }
+
+    public void retirar(String cuenta,double monto){
+        double saldo = repositorioBanco.obtenerSaldo(cuenta);
+
+        repositorioBanco.actualizarSaldo(cuenta,saldo-monto);
+    }
+
+    public double consultarSaldo(String cuenta){
+        return repositorioBanco.obtenerSaldo(cuenta);
+    }
+
 }
