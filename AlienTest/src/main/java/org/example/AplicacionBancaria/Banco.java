@@ -4,9 +4,13 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Banco {
-    private HashMap<String,Double> mapaBanco = new HashMap<>();
+    static HashMap<String,Double> mapaBanco = new HashMap<>();
 
-    public void depositar(String cuenta,double monto){
+    public static HashMap<String, Double> getMapaBanco() {
+        return mapaBanco;
+    }
+
+    public static void depositar(String cuenta, double monto){
 
         for (Map.Entry<String,Double> mapita : mapaBanco.entrySet()){
             if (mapita.getKey().equals(cuenta)){
@@ -18,7 +22,7 @@ public class Banco {
 
     }
 
-    public void retirar(String cuenta,double monto){
+    public static void retirar(String cuenta,double monto){
 
         for (Map.Entry<String,Double> mapita : mapaBanco.entrySet()){
             if (mapita.getKey().equals(cuenta)){
@@ -29,7 +33,7 @@ public class Banco {
         }
     }
 
-    public double consultarSaldo(String cuenta){
+    public static double consultarSaldo(String cuenta){
 
         return mapaBanco.get(cuenta);
     }
